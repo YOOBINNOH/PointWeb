@@ -1,4 +1,4 @@
-package Dto;
+package project.PointWeb.Dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,9 +7,10 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class MemberLoginDto {
+public class MemberRegisterDto {
 
     private String member_id;
     private Long member_pw;
+    private Long team_id;
 
 }

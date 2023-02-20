@@ -1,4 +1,4 @@
-package Domain;
+package project.PointWeb.Domain;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -45,4 +45,21 @@ public class Member{
 
 
 
+
+    // 회원가입
+    public Member(String member_id, Long member_pw, Long team_id, LocalDateTime register_date) {
+
+        this.member_id = member_id;
+        this.member_pw = member_pw;
+        this.team_id = team_id;
+        this.register_date = register_date;
+
+        this.current_point = 1000L;
+        this.give_point = 0L;
+        this.receive_point = 0L;
+        this.login_date = register_date;
+        this.resign_date = null;
+
+
+    }
 }

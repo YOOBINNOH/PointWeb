@@ -1,19 +1,21 @@
 package project.PointWeb.controller;
 
-import Domain.Member;
-import Dto.MemberLoginDto;
-import Dto.MemberRegisterDto;
-import ch.qos.logback.core.model.Model;
+import project.PointWeb.Domain.Member;
+import project.PointWeb.Dto.MemberLoginDto;
+import project.PointWeb.Dto.MemberRegisterDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
 import java.time.LocalDateTime;
 
 @Controller
+@RequiredArgsConstructor
 public class MemberController {
+//
+//    final MemberRepository memberRepository;
 
     @GetMapping("/login")
     public String login(){
@@ -41,5 +43,10 @@ public class MemberController {
         // 회원 가입 성공 시
         LocalDateTime register_date = LocalDateTime.now();
 
+        // 새로운 객체를 만들고 save
+
+        Member member = new Member(memberRegisterDto.getMember_id(), memberRegisterDto.getMember_pw(),memberRegisterDto.getTeam_id(),register_date);
+        System.out.println(member.getClass());
+//        memberRepository.save(member);
     }
 }
