@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### git_commit_rule ###
+git_commit_rule
