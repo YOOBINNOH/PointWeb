@@ -65,6 +65,10 @@ public class Member{
         this.login_date = login_date;
     }
 
+    public void update_current_point() {
+        this.current_point += 100L;
+    }
+
 
 
 }

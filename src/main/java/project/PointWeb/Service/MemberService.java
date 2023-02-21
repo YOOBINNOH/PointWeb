@@ -42,6 +42,7 @@ public class MemberService {
 
                 Member member = memberRepository.findByid(findmember.get().getId());
                 member.update_Login_date(login_date);
+                member.update_current_point();
                 return true;
             }
             else{
