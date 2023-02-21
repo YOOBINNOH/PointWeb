@@ -22,7 +22,7 @@ public class MemberController {
 
     @GetMapping("/login")
     public String login(){
-        return "login";
+        return "login/login";
     }
 
     @PostMapping("/login")
@@ -36,12 +36,17 @@ public class MemberController {
         Long loginPw = memberLoginDto.getMemberPw();
 
 
+        // 로그인 성공 시
+
         if(memberService.login_check(loginId,loginPw,login_date) == true){
-            return "login_success";
+            return "login/login_success";
         }
+
+        // 로그인 실패 시
+
         else{
             model.addAttribute("login_fail","회원 정보가 일치하지 않습니다.");
-            return "login_fail";
+            return "login/login_fail";
         }
 
 
@@ -50,8 +55,9 @@ public class MemberController {
 
     @GetMapping("/register")
     public String register(){
-        return "register";
+        return "register/register";
     }
+
 
     @PostMapping("/register")
     public String register_check(MemberRegisterDto memberRegisterDto){
@@ -65,7 +71,7 @@ public class MemberController {
         memberService.save(member);
 
 
-        return "register_success";
+        return "register/register_success";
 
     }
 }

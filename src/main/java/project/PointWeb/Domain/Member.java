@@ -45,6 +45,7 @@ public class Member{
 
 
     // 회원가입
+
     public Member(String memberId, Long memberPw, Long teamId,LocalDateTime register_date ) {
 
         this.memberId = memberId;
@@ -61,9 +62,13 @@ public class Member{
 
     }
 
+    // 로그인 시 로그인 date 최신화
+
     public void update_Login_date(LocalDateTime login_date) {
         this.login_date = login_date;
     }
+
+    // 로그인 시 점수 올리기
 
     public void update_current_point() {
         this.current_point += 100L;
