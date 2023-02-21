@@ -1,5 +1,6 @@
 package project.PointWeb.controller;
 
+import Service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import project.PointWeb.Domain.Member;
 import project.PointWeb.Dto.MemberLoginDto;
@@ -17,7 +18,7 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class MemberController {
 
-    final MemberRepository memberRepository;
+    final MemberService memberService;
 
     @GetMapping("/login")
     public String login(){
@@ -48,7 +49,7 @@ public class MemberController {
         // 새로운 객체를 만들고 save
 
         Member member = new Member(memberRegisterDto.getMember_id(), memberRegisterDto.getMember_pw(),memberRegisterDto.getTeam_id(),register_date);
-        memberRepository.save(member);
+        memberService.save(member);
 
 
     }
