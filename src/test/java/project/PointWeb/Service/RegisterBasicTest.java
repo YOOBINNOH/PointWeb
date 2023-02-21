@@ -17,7 +17,7 @@ import java.util.Optional;
 @SpringBootTest
 @Transactional
 @Rollback
-class RegisterTest {
+class RegisterBasicTest {
 
     @Autowired MemberController memberController;
     @Autowired MemberRepository memberRepository;
