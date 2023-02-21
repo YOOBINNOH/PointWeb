@@ -1,5 +1,7 @@
 package project.PointWeb.controller;
 
+
+import org.springframework.ui.Model;
 import project.PointWeb.Domain.Member;
 import project.PointWeb.Dto.MemberLoginDto;
 import project.PointWeb.Dto.MemberRegisterDto;
@@ -24,7 +26,7 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public String login_check(MemberLoginDto memberLoginDto){
+    public String login_check(MemberLoginDto memberLoginDto, Model model){
 
         LocalDateTime login_date = LocalDateTime.now();
 
@@ -33,11 +35,13 @@ public class MemberController {
         String loginId = memberLoginDto.getMemberId();
         Long loginPw = memberLoginDto.getMemberPw();
 
+
         if(memberService.login_check(loginId,loginPw,login_date) == true){
             return "login_success";
         }
         else{
-            return "login";
+            model.addAttribute("login_fail","회원 정보가 일치하지 않습니다.");
+            return "login_fail";
         }
 
 
