@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 @Setter
 public class MemberRegisterDto {
 
-    private String member_id;
-    private Long member_pw;
-    private Long team_id;
+    private String memberId;
+    private Long memberPw;
+    private Long teamId;
 
 }

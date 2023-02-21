@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Setter
 public class MemberLoginDto {
 
-    private String member_id;
-    private Long member_pw;
+    private String memberId;
+    private Long memberPw;
 
 }

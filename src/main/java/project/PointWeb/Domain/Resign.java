@@ -9,6 +9,6 @@
 //    private Long resign_id;
 //
 //    @OneToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name="member_id")
+//    @JoinColumn(name="memberId")
 //    private Member member;
 //}

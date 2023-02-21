@@ -12,9 +12,9 @@
 //public class Team {
 //
 //    @Id @GeneratedValue
-//    private Long team_id;
+//    private Long teamId;
 //
-//    @OneToMany(mappedBy = "member_id")
+//    @OneToMany(mappedBy = "memberId")
 //    private List<Member> members = new ArrayList<>();
 //
 //    private Long current_team_point;

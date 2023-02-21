@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
@@ -17,9 +15,9 @@ public class Member{
     @Id @GeneratedValue
     private Long id;
 
-    private String member_id;
+    private String memberId;
 
-    private Long member_pw;
+    private Long memberPw;
 
     private Long current_point;
 
@@ -33,10 +31,10 @@ public class Member{
 
     private LocalDateTime resign_date;
 
-    private Long team_id;
+    private Long teamId;
 
 //    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name= "team_id")
+//    @JoinColumn(name= "teamId")
 //    private Team team;
 //
 //    @OneToOne(fetch = FetchType.LAZY)
@@ -47,11 +45,11 @@ public class Member{
 
 
     // 회원가입
-    public Member(String member_id, Long member_pw, Long team_id, LocalDateTime register_date) {
+    public Member(String memberId, Long memberPw, Long teamId,LocalDateTime register_date ) {
 
-        this.member_id = member_id;
-        this.member_pw = member_pw;
-        this.team_id = team_id;
+        this.memberId = memberId;
+        this.memberPw = memberPw;
+        this.teamId = teamId;
         this.register_date = register_date;
 
         this.current_point = 1000L;

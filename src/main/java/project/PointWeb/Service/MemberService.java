@@ -1,4 +1,4 @@
-package Service;
+package project.PointWeb.Service;
 
 
 import lombok.RequiredArgsConstructor;
@@ -16,8 +16,8 @@ public class MemberService {
 
     // 저장 기능
     public Long save(Member member) {
-         memberRepository.save(member);
-         return member.getId();
+        memberRepository.save(member);
+        return member.getId();
     }
 
     // 탈퇴 기능

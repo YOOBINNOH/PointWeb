@@ -1,7 +1,5 @@
 package project.PointWeb.controller;
 
-import Service.MemberService;
-import org.springframework.beans.factory.annotation.Autowired;
 import project.PointWeb.Domain.Member;
 import project.PointWeb.Dto.MemberLoginDto;
 import project.PointWeb.Dto.MemberRegisterDto;
@@ -10,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import project.PointWeb.Repository.MemberRepository;
+import project.PointWeb.Service.MemberService;
 
 
 import java.time.LocalDateTime;
@@ -30,7 +29,6 @@ public class MemberController {
         // 로그인 체크 기능 필요
 
 
-
         // 체크 성공 시
         LocalDateTime login_date = LocalDateTime.now();
     }
@@ -48,7 +46,7 @@ public class MemberController {
 
         // 새로운 객체를 만들고 save
 
-        Member member = new Member(memberRegisterDto.getMember_id(), memberRegisterDto.getMember_pw(),memberRegisterDto.getTeam_id(),register_date);
+        Member member = new Member(memberRegisterDto.getMemberId(), memberRegisterDto.getMemberPw(),memberRegisterDto.getTeamId(),register_date);
         memberService.save(member);
 
 
