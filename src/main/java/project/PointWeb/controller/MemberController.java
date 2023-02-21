@@ -1,7 +1,5 @@
 package project.PointWeb.controller;
 
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import project.PointWeb.Domain.Member;
 import project.PointWeb.Dto.MemberLoginDto;
 import project.PointWeb.Dto.MemberRegisterDto;
@@ -26,12 +24,24 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public void login_check(MemberLoginDto memberLoginDto){
-        // 로그인 체크 기능 필요
+    public String login_check(MemberLoginDto memberLoginDto){
 
-
-        // 체크 성공 시
         LocalDateTime login_date = LocalDateTime.now();
+
+        // 로그인 체크 기능
+
+        String loginId = memberLoginDto.getMemberId();
+        Long loginPw = memberLoginDto.getMemberPw();
+
+        if(memberService.login_check(loginId,loginPw,login_date) == true){
+            return "login_success";
+        }
+        else{
+            return "login";
+        }
+
+
+
     }
 
     @GetMapping("/register")
@@ -40,7 +50,7 @@ public class MemberController {
     }
 
     @PostMapping("/register")
-    public String register_check(@Validated MemberRegisterDto memberRegisterDto,BindingResult bindingResult){
+    public String register_check(MemberRegisterDto memberRegisterDto){
 
         // 회원 가입 성공 시
         LocalDateTime register_date = LocalDateTime.now();
@@ -51,7 +61,7 @@ public class MemberController {
         memberService.save(member);
 
 
-        return "index";
+        return "register_success";
 
     }
 }

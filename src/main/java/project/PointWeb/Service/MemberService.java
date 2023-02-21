@@ -1,15 +1,20 @@
 package project.PointWeb.Service;
 
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import project.PointWeb.Domain.Member;
 import project.PointWeb.Repository.MemberRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class MemberService {
 
     final MemberRepository memberRepository;
@@ -25,5 +30,29 @@ public class MemberService {
         memberRepository.delete(member);
         return member.getId();
     }
+
+    // 로그인 체크
+    @Transactional
+    public boolean login_check(String loginId, Long loginPw, LocalDateTime login_date){
+
+        Optional<Member> findmember =  memberRepository.findBymemberId(loginId);
+
+        if ( findmember.isPresent() == true ){
+            if (findmember.get().getMemberPw().equals(loginPw)){
+
+                Member member = memberRepository.findByid(findmember.get().getId());
+                member.update_Login_date(login_date);
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        else{
+            return false;
+        }
+
+    }
+
 
 }

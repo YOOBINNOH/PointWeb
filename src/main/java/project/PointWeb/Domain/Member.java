@@ -60,4 +60,11 @@ public class Member{
 
 
     }
+
+    public void update_Login_date(LocalDateTime login_date) {
+        this.login_date = login_date;
+    }
+
+
+
 }
