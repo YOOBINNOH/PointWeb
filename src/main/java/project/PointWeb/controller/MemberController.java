@@ -1,5 +1,7 @@
 package project.PointWeb.controller;
 
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import project.PointWeb.Domain.Member;
 import project.PointWeb.Dto.MemberLoginDto;
 import project.PointWeb.Dto.MemberRegisterDto;
@@ -7,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import project.PointWeb.Repository.MemberRepository;
 import project.PointWeb.Service.MemberService;
 
 
@@ -39,7 +40,7 @@ public class MemberController {
     }
 
     @PostMapping("/register")
-    public void register_check(MemberRegisterDto memberRegisterDto){
+    public String register_check(@Validated MemberRegisterDto memberRegisterDto,BindingResult bindingResult){
 
         // 회원 가입 성공 시
         LocalDateTime register_date = LocalDateTime.now();
@@ -49,6 +50,8 @@ public class MemberController {
         Member member = new Member(memberRegisterDto.getMemberId(), memberRegisterDto.getMemberPw(),memberRegisterDto.getTeamId(),register_date);
         memberService.save(member);
 
+
+        return "index";
 
     }
 }
