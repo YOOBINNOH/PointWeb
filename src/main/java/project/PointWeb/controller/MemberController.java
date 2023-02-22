@@ -70,6 +70,11 @@ public class MemberController {
             model.addAttribute("duplicate_fail","이미 사용 중인 아이디 입니다.");
             return "register/register_duplicate";
         }
+        else if(memberService.isname_test_check(check_id) == false){
+            model.addAttribute("Isname_test_fail","아이디 이름으로 test 는 사용할 수 없습니다.");
+            return "register/register_Isname_test";
+        }
+
         else {
             // 회원 가입 성공 시
             LocalDateTime register_date = LocalDateTime.now();

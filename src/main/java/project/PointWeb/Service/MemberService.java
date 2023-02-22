@@ -64,9 +64,17 @@ public class MemberService {
         else{
             return true;
         }
-
     }
 
+    // ID가 "test" 인지 여부 체크
+    public boolean isname_test_check(String check_id){
 
+        if (check_id.equals("test")){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
 
 }
