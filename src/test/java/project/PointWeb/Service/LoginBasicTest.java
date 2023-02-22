@@ -37,17 +37,18 @@ public class LoginBasicTest {
 
         MemberLoginDto memberLoginDto = new MemberLoginDto();
 
-        String loginId = "idtc";
+        String loginId = "test";
         memberLoginDto.setMemberId(loginId);
         memberLoginDto.setMemberPw(null);
 
         Optional<Member> result = memberRepository.findBymemberId(loginId);
 
-        Long id = result.get().getId();
+
 
         try {
+            Long id = result.get().getId();
             Member member1 = memberRepository.findByid(id);
-            Assertions.assertThat(member1.getMemberId()).isEqualTo("idtc");
+            Assertions.assertThat(member1.getMemberId()).isEqualTo("test");
         }
         catch (Exception e){
             e.printStackTrace();
@@ -60,7 +61,7 @@ public class LoginBasicTest {
     void 비밀번호_일치_체크_테스트() {
 
         MemberRegisterDto memberRegisterDto = new MemberRegisterDto();
-        memberRegisterDto.setMemberId("pwtc");
+        memberRegisterDto.setMemberId("test");
         memberRegisterDto.setMemberPw(1234L);
         memberRegisterDto.setTeamId(1L);
 
@@ -70,10 +71,10 @@ public class LoginBasicTest {
         MemberLoginDto memberLoginDto = new MemberLoginDto();
 
 
-        memberLoginDto.setMemberId("pwtc");
+        memberLoginDto.setMemberId("test");
         memberLoginDto.setMemberPw(1234L);
 
-        Optional<Member> result = memberRepository.findBymemberId("pwtc");
+        Optional<Member> result = memberRepository.findBymemberId("test");
 
         Long id = result.get().getId();
 
