@@ -55,5 +55,18 @@ public class MemberService {
 
     }
 
+    // ID 중복 체크 기능
+    public boolean duplicate_check(String check_id){
+
+        if (memberRepository.findBymemberId(check_id).isPresent()){
+            return false;
+        }
+        else{
+            return true;
+        }
+
+    }
+
+
 
 }

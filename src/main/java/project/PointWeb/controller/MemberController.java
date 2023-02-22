@@ -60,18 +60,27 @@ public class MemberController {
 
 
     @PostMapping("/register")
-    public String register_check(MemberRegisterDto memberRegisterDto){
+    public String register_check(MemberRegisterDto memberRegisterDto, Model model){
 
-        // 회원 가입 성공 시
-        LocalDateTime register_date = LocalDateTime.now();
+        //Id 중복 체크 기능
 
-        // 새로운 객체를 만들고 save
+        String check_id = memberRegisterDto.getMemberId();
 
-        Member member = new Member(memberRegisterDto.getMemberId(), memberRegisterDto.getMemberPw(),memberRegisterDto.getTeamId(),register_date);
-        memberService.save(member);
+        if(memberService.duplicate_check(memberRegisterDto.getMemberId()) == false){
+            model.addAttribute("duplicate_fail","이미 사용 중인 아이디 입니다.");
+            return "register/register_duplicate";
+        }
+        else {
+            // 회원 가입 성공 시
+            LocalDateTime register_date = LocalDateTime.now();
+
+            // 새로운 객체를 만들고 save
+
+            Member member = new Member(memberRegisterDto.getMemberId(), memberRegisterDto.getMemberPw(), memberRegisterDto.getTeamId(), register_date);
+            memberService.save(member);
 
 
-        return "register/register_success";
-
+            return "register/register_success";
+        }
     }
 }
