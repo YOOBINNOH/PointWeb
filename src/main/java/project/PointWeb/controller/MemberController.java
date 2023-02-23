@@ -1,6 +1,7 @@
 package project.PointWeb.controller;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.ui.Model;
 import project.PointWeb.Domain.Member;
 import project.PointWeb.Dto.MemberLoginDto;
@@ -16,6 +17,7 @@ import java.time.LocalDateTime;
 
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class MemberController {
 
     final MemberService memberService;
@@ -30,15 +32,19 @@ public class MemberController {
 
         LocalDateTime login_date = LocalDateTime.now();
 
-        // 로그인 체크 기능
 
         String loginId = memberLoginDto.getMemberId();
         Long loginPw = memberLoginDto.getMemberPw();
 
+        // 관리자 로그인 시 관리자 페이지로 이동
+        if(loginId.equals("host") && loginPw.equals(1234L)){
+
+            return "admin/admin";
+        }
 
         // 로그인 성공 시
 
-        if(memberService.login_check(loginId,loginPw,login_date) == true){
+        else if(memberService.login_check(loginId,loginPw,login_date) == true){
             return "login/login_success";
         }
 
