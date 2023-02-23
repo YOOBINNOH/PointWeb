@@ -104,7 +104,7 @@ public class MemberController {
             memberService.save(member);
 
 
-            return "register/register_success";
+            return "redirect:/";
         }
     }
 }

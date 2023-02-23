@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Setter
 public class MemberRegisterDto {
 
-    @NotBlank @Size(min = 4,max=4) @Pattern(regexp ="^[a-z]")
+    @NotBlank
     private String memberId;
 
     @NotNull @Range(min = 1000L, max = 9999L)
