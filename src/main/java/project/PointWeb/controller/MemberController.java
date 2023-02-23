@@ -48,8 +48,9 @@ public class MemberController {
         // 관리자 로그인 시 관리자 페이지로 이동
         if(loginId.equals("host") && loginPw.equals(1234L)){
             model.addAttribute("members",memberRepository.findAll());
-            return "admin/admin";
+            return "redirect:/admin/main";
         }
+
 
         // 로그인 성공 시
 
