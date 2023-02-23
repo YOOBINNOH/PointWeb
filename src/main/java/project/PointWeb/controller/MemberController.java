@@ -3,6 +3,9 @@ package project.PointWeb.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import project.PointWeb.Domain.Member;
 import project.PointWeb.Dto.MemberLoginDto;
 import project.PointWeb.Dto.MemberRegisterDto;
@@ -28,13 +31,17 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public String login_check(MemberLoginDto memberLoginDto, Model model){
+    public String login_check(@Validated @ModelAttribute MemberLoginDto memberLoginDto, BindingResult bindingResult,Model model){
 
         LocalDateTime login_date = LocalDateTime.now();
 
 
         String loginId = memberLoginDto.getMemberId();
         Long loginPw = memberLoginDto.getMemberPw();
+
+        if(bindingResult.hasErrors()){
+            return "login/login";
+        }
 
         // 관리자 로그인 시 관리자 페이지로 이동
         if(loginId.equals("host") && loginPw.equals(1234L)){
@@ -66,11 +73,15 @@ public class MemberController {
 
 
     @PostMapping("/register")
-    public String register_check(MemberRegisterDto memberRegisterDto, Model model){
+    public String register_check(@Validated @ModelAttribute MemberRegisterDto memberRegisterDto,BindingResult bindingResult, Model model){
 
         //Id 중복 체크 기능
 
         String check_id = memberRegisterDto.getMemberId();
+
+        if(bindingResult.hasErrors()){
+            return "register/register";
+        }
 
         if(memberService.duplicate_check(memberRegisterDto.getMemberId()) == false){
             model.addAttribute("duplicate_fail","이미 사용 중인 아이디 입니다.");

@@ -11,10 +11,10 @@ import java.time.LocalDateTime;
 @Setter
 public class MemberLoginDto {
 
-//    @NotBlank(message = "아이디 입력을 하세요.")
+    @NotBlank(message = "아이디 입력을 하세요.")
     private String memberId;
 
-//    @NotNull(message = "비밀번호 입력을 하세요.")
+    @NotNull(message = "비밀번호 입력을 하세요.")
     private Long memberPw;
 
 }
