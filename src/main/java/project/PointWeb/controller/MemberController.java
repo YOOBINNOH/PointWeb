@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import project.PointWeb.Repository.MemberRepository;
 import project.PointWeb.Service.MemberService;
 
 
@@ -24,6 +25,7 @@ import java.time.LocalDateTime;
 public class MemberController {
 
     final MemberService memberService;
+    final MemberRepository memberRepository;
 
     @GetMapping("/login")
     public String login(){
@@ -45,7 +47,7 @@ public class MemberController {
 
         // 관리자 로그인 시 관리자 페이지로 이동
         if(loginId.equals("host") && loginPw.equals(1234L)){
-
+            model.addAttribute("members",memberRepository.findAll());
             return "admin/admin";
         }
 
