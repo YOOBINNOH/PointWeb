@@ -1,4 +1,4 @@
-package project.PointWeb.AdminService;
+package project.PointWeb.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

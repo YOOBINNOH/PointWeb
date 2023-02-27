@@ -1,4 +1,4 @@
-package project.PointWeb.AdminService;
+package project.PointWeb.Controller;
 
 
 import lombok.extern.slf4j.Slf4j;
@@ -104,8 +104,9 @@ public class MemberBasicController {
             Member member = new Member(memberRegisterDto.getMemberId(), memberRegisterDto.getMemberPw(), memberRegisterDto.getTeamId(), register_date);
             memberService.save(member);
 
+            model.addAttribute("register_success","회원가입이 성공했습니다. 다시 로그인 해주세요.");
 
-            return "redirect:/";
+            return "register/register_success";
         }
     }
 }
