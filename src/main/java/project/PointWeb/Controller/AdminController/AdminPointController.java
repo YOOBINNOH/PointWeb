@@ -1,6 +1,7 @@
 package project.PointWeb.Controller.AdminController;
 
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,7 @@ public class AdminPointController {
 
     @Autowired MemberRepository memberRepository;
 
+    @Transactional
     @PostMapping("/admin/point/add")
     public String add(@RequestParam("memberId") String memberId, @RequestParam("add_point") Long add_point, Model model){
 
@@ -25,12 +27,12 @@ public class AdminPointController {
         if(id.isPresent()){
             Member member = memberRepository.findByid(id.get().getId());
             member.add_point(add_point);
-            model.addAttribute("add_success",memberId+"에게"+add_point +"점 지급했습니다.");
+            model.addAttribute("add_success",memberId+" 에게 "+add_point +"점 지급했습니다.");
             return "admin/add_success";
         }
         else{
             model.addAttribute("add_fail","등록되지 않은 회원입니다.");
-            return "admin/change_fail";
+            return "admin/add_fail";
         }
 
 
