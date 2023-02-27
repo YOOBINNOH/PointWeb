@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import project.PointWeb.Domain.Member;
 import project.PointWeb.Dto.MemberLoginDto;
 import project.PointWeb.Dto.MemberRegisterDto;
@@ -33,7 +34,7 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public String login_check(@Validated @ModelAttribute MemberLoginDto memberLoginDto, BindingResult bindingResult,Model model){
+    public String login_check(@Validated @ModelAttribute MemberLoginDto memberLoginDto, BindingResult bindingResult, Model model){
 
         LocalDateTime login_date = LocalDateTime.now();
 
@@ -47,7 +48,7 @@ public class MemberController {
 
         // 관리자 로그인 시 관리자 페이지로 이동
         if(loginId.equals("host") && loginPw.equals(1234L)){
-            model.addAttribute("members",memberRepository.findAll());
+
             return "redirect:/admin/main";
         }
 
