@@ -1,4 +1,4 @@
-package project.PointWeb.controller;
+package project.PointWeb.AdminService;
 
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
@@ -8,7 +8,7 @@ import org.springframework.test.annotation.Rollback;
 import project.PointWeb.Domain.Member;
 import project.PointWeb.Dto.MemberRegisterDto;
 import project.PointWeb.Repository.MemberRepository;
-import project.PointWeb.Service.MemberService;
+import project.PointWeb.MemberService.MemberService;
 
 import java.util.Optional;
 
@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @Transactional
 @Rollback
-class AdminControllerTest {
+class DeleteMemberTest {
 
     @Autowired MemberRepository memberRepository;
     @Autowired MemberService memberService;

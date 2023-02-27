@@ -1,4 +1,4 @@
-package project.PointWeb.Service;
+package project.PointWeb.MemberService;
 
 
 import jakarta.transaction.Transactional;
@@ -9,7 +9,6 @@ import project.PointWeb.Domain.Member;
 import project.PointWeb.Repository.MemberRepository;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
 
 @Service

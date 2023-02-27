@@ -1,4 +1,4 @@
-package project.PointWeb.Service;
+package project.PointWeb.MemberService;
 
 
 import jakarta.transaction.Transactional;
@@ -10,7 +10,7 @@ import org.springframework.test.annotation.Rollback;
 import project.PointWeb.Domain.Member;
 import project.PointWeb.Dto.MemberRegisterDto;
 import project.PointWeb.Repository.MemberRepository;
-import project.PointWeb.controller.MemberController;
+import project.PointWeb.AdminService.MemberBasicController;
 
 
 @SpringBootTest
@@ -18,7 +18,8 @@ import project.PointWeb.controller.MemberController;
 @Rollback
 public class RegisterNameTest {
 
-    @Autowired MemberController memberController;
+    @Autowired
+    MemberBasicController memberController;
     @Autowired MemberRepository memberRepository;
     @Autowired MemberService memberService;
 

@@ -74,6 +74,11 @@ public class Member{
         this.current_point += 100L;
     }
 
+    // 회원 팀 번호 변경
+
+    public void change_teamId(Long teamId) {
+        this.teamId = teamId;
+    }
 
 
 }

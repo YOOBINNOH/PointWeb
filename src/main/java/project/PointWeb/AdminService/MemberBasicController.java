@@ -1,4 +1,4 @@
-package project.PointWeb.controller;
+package project.PointWeb.AdminService;
 
 
 import lombok.extern.slf4j.Slf4j;
@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import project.PointWeb.Domain.Member;
 import project.PointWeb.Dto.MemberLoginDto;
 import project.PointWeb.Dto.MemberRegisterDto;
@@ -15,7 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import project.PointWeb.Repository.MemberRepository;
-import project.PointWeb.Service.MemberService;
+import project.PointWeb.MemberService.MemberService;
 
 
 import java.time.LocalDateTime;
@@ -23,7 +22,7 @@ import java.time.LocalDateTime;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-public class MemberController {
+public class MemberBasicController {
 
     final MemberService memberService;
     final MemberRepository memberRepository;

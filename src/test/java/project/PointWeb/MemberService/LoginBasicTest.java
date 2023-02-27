@@ -1,4 +1,4 @@
-package project.PointWeb.Service;
+package project.PointWeb.MemberService;
 
 import jakarta.transaction.Transactional;
 import org.assertj.core.api.Assertions;
@@ -10,7 +10,7 @@ import project.PointWeb.Domain.Member;
 import project.PointWeb.Dto.MemberLoginDto;
 import project.PointWeb.Dto.MemberRegisterDto;
 import project.PointWeb.Repository.MemberRepository;
-import project.PointWeb.controller.MemberController;
+import project.PointWeb.AdminService.MemberBasicController;
 
 import java.util.Optional;
 
@@ -19,7 +19,8 @@ import java.util.Optional;
 @Rollback
 public class LoginBasicTest {
 
-    @Autowired MemberController memberController;
+    @Autowired
+    MemberBasicController memberController;
     @Autowired MemberRepository memberRepository;
     @Autowired MemberService memberService;
 
