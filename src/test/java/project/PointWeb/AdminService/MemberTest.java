@@ -1,6 +1,7 @@
 package project.PointWeb.AdminService;
 
 import jakarta.transaction.Transactional;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @Transactional
 @Rollback
-class DeleteMemberTest {
+class MemberTest {
 
     @Autowired MemberRepository memberRepository;
     @Autowired MemberService memberService;
@@ -47,6 +48,33 @@ class DeleteMemberTest {
         if(memberRepository.findBymemberId("detc").isPresent()){
             fail("회원 삭제 실패");
         }
+
+    }
+
+    @Test
+    void 멤버_팀변경_테스트() {
+
+        MemberRegisterDto memberRegisterDto = new MemberRegisterDto();
+        memberRegisterDto.setMemberId("chtc");
+        memberRegisterDto.setMemberPw(1234L);
+        memberRegisterDto.setTeamId(1L);
+
+        Member member = new Member(memberRegisterDto.getMemberId(), memberRegisterDto.getMemberPw(), memberRegisterDto.getTeamId(), null);
+        memberService.save(member);
+
+        Optional<Member> id = memberRepository.findBymemberId("chtc");
+
+        if(id.isPresent()){
+            Member member1 = memberRepository.findByid(id.get().getId());
+            member1.change_teamId(2L);
+
+            org.assertj.core.api.Assertions.assertThat(member1.getTeamId()).isEqualTo(2L);
+        }
+        else{
+            fail("회원 가입 실패");
+        }
+
+
 
     }
 }
