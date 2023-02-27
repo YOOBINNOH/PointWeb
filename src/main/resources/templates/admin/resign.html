@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    body {
+      min-height: 100vh;
+
+      background: -webkit-gradient(linear, left bottom, right top, from(#92b5db), to(#1d466c));
+      background: -webkit-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+      background: -moz-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+      background: -o-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+      background: linear-gradient(to top right, #92b5db 0%, #1d466c 100%);
+      text-align: center;
+    }
+
+  </style>
+</head>
+<body>
+<table class="members">
+  <p>
+    <tr>
+      <td>아이디</font></td>
+      <td></td>
+      <td>보유 포인트</td>
+      <td></td>
+      <td>기부 포인트</td>
+      <td></td>
+      <td>받은 포인트</td>
+      <td></td>
+
+
+    </tr>
+
+    <tr th:each="member : ${members}">
+      <td th:if="${member.resign_date!= null}" th:text="${member.getId()}"></td>
+      <td></td>
+      <td th:if="${member.resign_date!= null}" th:text="${member.getResign_date()}"/>
+      <td></td>
+
+
+
+</table>
+
+<button type="button" onclick="location.href='main'">메인 화면</button>
+<button type="button" onclick="location.href='point'">회원 포인트 관리</button>
+<button type="button" onclick="location.href='member'">회원 계정 관리</button>
+
+
+
+</body>
+</html>

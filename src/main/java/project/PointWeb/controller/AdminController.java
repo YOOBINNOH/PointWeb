@@ -33,4 +33,10 @@ public class AdminController {
         return "/admin/point";
     }
 
+    @GetMapping("/admin/resign")
+    public String resign(Model model){
+        model.addAttribute("members",memberRepository.findAll());
+        return "/admin/resign";
+    }
+
 }
