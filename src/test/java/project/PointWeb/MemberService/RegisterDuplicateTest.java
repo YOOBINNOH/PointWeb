@@ -10,7 +10,7 @@ import org.springframework.test.annotation.Rollback;
 import project.PointWeb.Domain.Member;
 import project.PointWeb.Dto.MemberRegisterDto;
 import project.PointWeb.Repository.MemberRepository;
-import project.PointWeb.Controller.MemberBasicController;
+import project.PointWeb.Controller.MemberController.MemberBasicController;
 
 
 @SpringBootTest

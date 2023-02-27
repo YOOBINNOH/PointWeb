@@ -27,14 +27,14 @@ class MemberTest {
     void 멤버_삭제_테스트() {
 
         MemberRegisterDto memberRegisterDto = new MemberRegisterDto();
-        memberRegisterDto.setMemberId("detc");
+        memberRegisterDto.setMemberId("test");
         memberRegisterDto.setMemberPw(1234L);
         memberRegisterDto.setTeamId(1L);
 
         Member member = new Member(memberRegisterDto.getMemberId(), memberRegisterDto.getMemberPw(), memberRegisterDto.getTeamId(), null);
         memberService.save(member);
 
-        Optional<Member> id = memberRepository.findBymemberId("detc");
+        Optional<Member> id = memberRepository.findBymemberId("test");
 
         if(id.isPresent()){
             Member member1 = memberRepository.findByid(id.get().getId());
@@ -44,7 +44,7 @@ class MemberTest {
             fail("회원 가입 실패");
         }
 
-        if(memberRepository.findBymemberId("detc").isPresent()){
+        if(memberRepository.findBymemberId("test").isPresent()){
             fail("회원 삭제 실패");
         }
 
@@ -54,14 +54,14 @@ class MemberTest {
     void 멤버_팀변경_테스트() {
 
         MemberRegisterDto memberRegisterDto = new MemberRegisterDto();
-        memberRegisterDto.setMemberId("chtc");
+        memberRegisterDto.setMemberId("test");
         memberRegisterDto.setMemberPw(1234L);
         memberRegisterDto.setTeamId(1L);
 
         Member member = new Member(memberRegisterDto.getMemberId(), memberRegisterDto.getMemberPw(), memberRegisterDto.getTeamId(), null);
         memberService.save(member);
 
-        Optional<Member> id = memberRepository.findBymemberId("chtc");
+        Optional<Member> id = memberRepository.findBymemberId("test");
 
         if(id.isPresent()){
             Member member1 = memberRepository.findByid(id.get().getId());

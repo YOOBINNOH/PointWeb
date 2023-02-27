@@ -10,7 +10,7 @@ import project.PointWeb.Domain.Member;
 import project.PointWeb.Dto.MemberLoginDto;
 import project.PointWeb.Dto.MemberRegisterDto;
 import project.PointWeb.Repository.MemberRepository;
-import project.PointWeb.Controller.MemberBasicController;
+import project.PointWeb.Controller.MemberController.MemberBasicController;
 
 import java.util.Optional;
 
@@ -29,7 +29,7 @@ public class LoginBasicTest {
     void 아이디_존재_체크_테스트() {
 
         MemberRegisterDto memberRegisterDto = new MemberRegisterDto();
-        memberRegisterDto.setMemberId("idtc");
+        memberRegisterDto.setMemberId("test");
         memberRegisterDto.setMemberPw(1234L);
         memberRegisterDto.setTeamId(1L);
 

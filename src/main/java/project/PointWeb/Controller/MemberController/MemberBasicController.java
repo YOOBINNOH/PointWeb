@@ -1,4 +1,4 @@
-package project.PointWeb.Controller;
+package project.PointWeb.Controller.MemberController;
 
 
 import lombok.extern.slf4j.Slf4j;

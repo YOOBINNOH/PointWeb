@@ -80,5 +80,15 @@ public class Member{
         this.teamId = teamId;
     }
 
+    // 포인트 지급
+    public void add_point(Long add_point){
+        this.current_point += add_point;
+    }
+
+    // 포인트 차감
+    public void minus_point(Long minus_point){
+        this.current_point -= minus_point;
+    }
+
 
 }
