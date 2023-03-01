@@ -17,6 +17,7 @@ public class AdminMemberController {
 
     @Autowired MemberRepository memberRepository;
 
+    // 회원 삭제
 
     @PostMapping("/admin/member/delete")
     public String DeleteMember(@RequestParam("memberId") String memberId, Model model){
@@ -34,6 +35,8 @@ public class AdminMemberController {
         }
 
     }
+
+    // 회원 팀 변경
 
     @Transactional
     @PostMapping("/admin/member/change")

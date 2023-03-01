@@ -1,4 +1,4 @@
-package project.PointWeb.Controller;
+package project.PointWeb.AdminService;
 
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;

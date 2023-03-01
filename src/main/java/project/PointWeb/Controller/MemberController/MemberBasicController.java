@@ -32,6 +32,8 @@ public class MemberBasicController {
         return "login/login";
     }
 
+    // 로그인
+
     @PostMapping("/login")
     public String login_check(@Validated @ModelAttribute MemberLoginDto memberLoginDto, BindingResult bindingResult, Model model){
 

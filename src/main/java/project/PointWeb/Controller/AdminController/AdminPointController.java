@@ -2,6 +2,7 @@ package project.PointWeb.Controller.AdminController;
 
 
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,10 +14,12 @@ import project.PointWeb.Repository.MemberRepository;
 import java.util.Optional;
 
 @Controller
-
+@RequiredArgsConstructor
 public class AdminPointController {
 
-    @Autowired MemberRepository memberRepository;
+    final MemberRepository memberRepository;
+
+    // 회원 포인트 지급
 
     @Transactional
     @PostMapping("/admin/point/add")
@@ -37,6 +40,8 @@ public class AdminPointController {
 
 
     }
+
+    // 회원 포인트 차감
 
     @Transactional
     @PostMapping("/admin/point/minus")
