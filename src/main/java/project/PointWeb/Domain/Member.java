@@ -87,7 +87,13 @@ public class Member{
 
     // 포인트 차감
     public void minus_point(Long minus_point){
-        this.current_point -= minus_point;
+
+        if((this.current_point - minus_point)>=0L){
+            this.current_point -= minus_point;
+        }
+        else{
+            this.current_point = 0L;
+        }
     }
 
 
