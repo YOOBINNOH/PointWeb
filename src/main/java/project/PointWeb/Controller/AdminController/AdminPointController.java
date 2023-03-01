@@ -38,19 +38,20 @@ public class AdminPointController {
 
     }
 
+    @Transactional
     @PostMapping("/admin/point/minus")
-    public String minus(@RequestParam("memberId") String memberId, @RequestParam("add_point") Long add_point, Model model){
+    public String minus(@RequestParam("memberId") String memberId, @RequestParam("minus_point") Long minus_point, Model model){
         Optional<Member> id = memberRepository.findBymemberId(memberId);
 
         if(id.isPresent()){
             Member member = memberRepository.findByid(id.get().getId());
-            member.add_point(add_point);
-            model.addAttribute("add_success",memberId+" 에게 "+add_point +"점 지급했습니다.");
-            return "admin/add_success";
+            member.minus_point(minus_point);
+            model.addAttribute("minus_success",memberId+" 에게 "+minus_point +"점 차감했습니다.");
+            return "admin/minus_success";
         }
         else{
-            model.addAttribute("add_fail","등록되지 않은 회원입니다.");
-            return "admin/add_fail";
+            model.addAttribute("minus_fail","등록되지 않은 회원입니다.");
+            return "admin/minus_fail";
         }
     }
 }
