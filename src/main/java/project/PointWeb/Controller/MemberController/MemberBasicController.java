@@ -63,7 +63,7 @@ public class MemberBasicController {
 
             if(member.isPresent()){
                 Long id = member.get().getId();
-                System.out.println("member/"+id);
+
                 return "redirect:/member/"+id;
 
             }
@@ -113,6 +113,7 @@ public class MemberBasicController {
 
         else {
             // 회원 가입 성공 시
+
             LocalDateTime register_date = LocalDateTime.now();
 
             // 새로운 객체를 만들고 save

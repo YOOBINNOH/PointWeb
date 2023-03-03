@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
@@ -18,7 +19,73 @@
   </style>
 </head>
 <body>
+<h1 th:text="${member.getMemberId()}"></h1>
+<h2>님 안녕하세요!</h2>
+<table class="members">
+  <p>
+    <tr>
+      <td>아이디</font></td>
+      <td></td>
+      <td>보유 포인트</td>
+      <td></td>
+      <td>기부 포인트</td>
+      <td></td>
+      <td>받은 포인트</td>
+      <td></td>
+      <td>가입 일자</td>
+      <td></td>
+      <td>최근 로그인</td>
 
-로그인 성공 축하영
+    </tr>
+
+    <tr th="member : ${member}">
+      <td th:text="${member.getMemberId()}"></td>
+      <td></td>
+      <td th:text="${member.getCurrent_point()}"></td>
+      <td></td>
+      <td th:text="${member.getGive_point()}"></td>
+      <td></td>
+      <td th:text="${member.getReceive_point()}"></td>
+      <td></td>
+      <td th:text="${member.getRegister_date()}"></td>
+      <td></td>
+      <td th:text="${member.getLogin_date()}"></td>
+    </tr>
+</table>
+
+
+<div class="container">
+  <div class="input-form-backgroud row">
+    <div class="input-form col-md-12 mx-auto">
+      <h4 class="mb-3">포인트 선물하기</h4>
+      <form class="validation-form" action="/member/point/give" method="POST" >
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label >아이디</label>
+            <input type="text" class="form-control"  placeholder="" value="" name="memberId" required>
+
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="memberTeam">선물할 포인트</label>
+            <input type="text" class="form-control" id="memberTeam" placeholder="" value="" name = "give_point" required>
+
+          </div>
+        </div>
+        <br>
+
+        <div class="mb-4"></div>
+        <button class="btn btn-primary btn-lg btn-block" type="submit">포인트 선물하기</button>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+
+<form method="post" action="resign">
+  <button type="button" onclick="location.href='member'">회원 탈퇴하기</button>
+</form>
+
+
 </body>
 </html>
