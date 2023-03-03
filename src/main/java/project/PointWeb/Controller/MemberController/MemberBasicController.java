@@ -18,6 +18,7 @@ import project.PointWeb.MemberService.MemberService;
 
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -57,7 +58,20 @@ public class MemberBasicController {
         // 로그인 성공 시
 
         else if(memberService.login_check(loginId,loginPw,login_date) == true){
-            return "login/login_success";
+
+            Optional<Member> member = memberRepository.findBymemberId(loginId);
+
+            if(member.isPresent()){
+                Long id = member.get().getId();
+                System.out.println("member/"+id);
+                return "redirect:/member/"+id;
+
+            }
+
+            else{
+                return "login/login_fail";
+            }
+
         }
 
         // 로그인 실패 시
