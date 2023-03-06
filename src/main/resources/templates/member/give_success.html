@@ -8,8 +8,9 @@
 
 <script th:inline="javascript">
   var message = [[${give_success}]];
+   var id = [[${id}]];
   alert(message);
-  location.replace("/member/main");
+  location.replace("/member/"+id);
 </script>
 </body>
 </html>

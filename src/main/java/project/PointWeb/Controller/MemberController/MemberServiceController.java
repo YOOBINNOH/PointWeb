@@ -49,6 +49,8 @@ public class MemberServiceController {
         Optional<Member> member1 = memberRepository.findBymemberId(Id);
         Optional<Member> member2 = memberRepository.findBymemberId(memberId);
 
+        Long id = member1.get().getId();
+
         if (member1.isPresent()) {
 
             // point 지급 성공
@@ -56,6 +58,7 @@ public class MemberServiceController {
                 member2.get().add_point(give_point);
                 member1.get().add_point(-give_point);
                 model.addAttribute("give_success", memberId + " 에게 " + give_point + "점 지급했습니다.");
+                model.addAttribute("id",id);
                 return "member/give_success";
             }
 
@@ -64,10 +67,12 @@ public class MemberServiceController {
                 // 선물할 회원이 없는 경우
                 if (member2.isPresent() == false) {
                     model.addAttribute("give_fail", "등록되지 않은 회원입니다.");
+                    model.addAttribute("id",id);
                     return "member/give_fail";
                 }
                 if (member1.get().getCurrent_point() < give_point) {
                     model.addAttribute("give_fail", "포인트가 부족합니다.");
+                    model.addAttribute("id",id);
                     return "member/give_fail";
                 }
 
