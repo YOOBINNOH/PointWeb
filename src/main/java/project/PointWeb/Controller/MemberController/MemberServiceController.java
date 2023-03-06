@@ -38,36 +38,46 @@ public class MemberServiceController {
     // 포인트 선물 기능
     @Transactional
     @PostMapping("/member/point/give")
-    public String point_give(@RequestParam("memberId") String memberId, @RequestParam("give_point") Long give_point, @RequestParam("Id") String Id, Model model){
+    public String point_give(@RequestParam("memberId") String memberId, @RequestParam("give_point") Long give_point, @RequestParam("Id") String Id, Model model) {
 
-        Optional<Member> id = memberRepository.findBymemberId(memberId);
 
         // Id : 선물한 사람 아이디
         // memberId : 선물 받은 사람 아이디
 
         // 선물한 사람의 id 판별 후 그 사람 포인트 감소 필요 -> 포인트 부족 시 error 창 이동
 
-        log.warn(Id);
+        Optional<Member> member1 = memberRepository.findBymemberId(Id);
+        Optional<Member> member2 = memberRepository.findBymemberId(memberId);
 
-        // 선물한 사람의 id로 model.addattribute 후 회원의 main page 로 이동 시켜야 함
+        if (member1.isPresent()) {
 
-        if(id.isPresent()){
-            Member member = memberRepository.findByid(id.get().getId());
-            member.add_point(give_point);
-            model.addAttribute("give_success",memberId+" 에게 "+give_point +"점 지급했습니다.");
-            return "member/give_success";
+            // point 지급 성공
+            if (member1.get().getCurrent_point() >= give_point && member2.isPresent()) {
+                member2.get().add_point(give_point);
+                member1.get().add_point(-give_point);
+                model.addAttribute("give_success", memberId + " 에게 " + give_point + "점 지급했습니다.");
+                return "member/give_success";
+            }
+
+            // point 지급 실패
+            else {
+                // 선물할 회원이 없는 경우
+                if (member2.isPresent() == false) {
+                    model.addAttribute("give_fail", "등록되지 않은 회원입니다.");
+                    return "member/give_fail";
+                }
+                if (member1.get().getCurrent_point() < give_point) {
+                    model.addAttribute("give_fail", "포인트가 부족합니다.");
+                    return "member/give_fail";
+                }
+
+            }
         }
-        else{
-            model.addAttribute("give_fail","등록되지 않은 회원입니다.");
-            return "member/give_fail";
-        }
 
-
+        return "redirect:/login/login";
     }
-
-
-
-
-
-
 }
+
+
+
+
