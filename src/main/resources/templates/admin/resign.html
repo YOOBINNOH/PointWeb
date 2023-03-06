@@ -34,22 +34,23 @@
 <table class="members">
   <p>
     <tr>
-      <td>아이디</font></td>
+      <td>고유 번호</font></td>
       <td></td>
-      <td>보유 포인트</td>
+      <td>아이디</td>
       <td></td>
-      <td>기부 포인트</td>
+      <td>탈퇴 일자</td>
       <td></td>
-      <td>받은 포인트</td>
-      <td></td>
+
 
 
     </tr>
 
     <tr th:each="member : ${members}">
-      <td th:if="${member.resign_date!= null}" th:text="${member.getId()}"></td>
+      <td th:text="${member.resign_id}"></td>
       <td></td>
-      <td th:if="${member.resign_date!= null}" th:text="${member.getResign_date()}"/>
+      <td th:text="${member.member_id}"></td>
+      <td></td>
+      <td th:text="${member.resign_date}"></td>
       <td></td>
 
 

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import project.PointWeb.Repository.MemberRepository;
+import project.PointWeb.Repository.ResignRepository;
 
 @Controller
 
@@ -12,6 +13,7 @@ import project.PointWeb.Repository.MemberRepository;
 public class AdminBasicController {
 
     @Autowired MemberRepository memberRepository;
+    @Autowired ResignRepository resignRepository;
 
 
     @GetMapping("/admin/main")
@@ -34,7 +36,7 @@ public class AdminBasicController {
 
     @GetMapping("/admin/resign")
     public String resign(Model model){
-        model.addAttribute("members",memberRepository.findAll());
+        model.addAttribute("members",resignRepository.findAll());
         return "/admin/resign";
     }
 
