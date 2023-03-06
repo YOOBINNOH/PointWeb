@@ -38,13 +38,16 @@ public class MemberServiceController {
     // 포인트 선물 기능
     @Transactional
     @PostMapping("/member/point/give")
-    public String point_give(@RequestParam("memberId") String memberId, @RequestParam("give_point") Long give_point, Model model){
+    public String point_give(@RequestParam("memberId") String memberId, @RequestParam("give_point") Long give_point, @RequestParam("Id") String Id, Model model){
 
         Optional<Member> id = memberRepository.findBymemberId(memberId);
 
+        // Id : 선물한 사람 아이디
+        // memberId : 선물 받은 사람 아이디
+
         // 선물한 사람의 id 판별 후 그 사람 포인트 감소 필요 -> 포인트 부족 시 error 창 이동
 
-
+        log.warn(Id);
 
         // 선물한 사람의 id로 model.addattribute 후 회원의 main page 로 이동 시켜야 함
 
