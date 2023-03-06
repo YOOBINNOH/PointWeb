@@ -96,5 +96,15 @@ public class Member{
         }
     }
 
+    // 기부 포인트 추가
+    public void give_point(Long give_point){
+        this.give_point+=give_point;
+    }
+
+    // 받은 포인트 추가
+    public void receive_point(Long receive_point){
+        this.receive_point += receive_point;
+    }
+
 
 }
