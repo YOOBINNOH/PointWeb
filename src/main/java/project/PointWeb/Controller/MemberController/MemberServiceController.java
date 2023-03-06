@@ -11,8 +11,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import project.PointWeb.Domain.Member;
+import project.PointWeb.Domain.Resign;
 import project.PointWeb.Repository.MemberRepository;
+import project.PointWeb.Repository.ResignRepository;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Controller
@@ -20,7 +24,7 @@ import java.util.Optional;
 public class MemberServiceController {
 
     @Autowired MemberRepository memberRepository;
-
+    @Autowired ResignRepository resignRepository;
 
     // 로그인 성공한 회원, 회원 페이지로 이동
 
@@ -53,7 +57,7 @@ public class MemberServiceController {
 
         if (member1.isPresent()) {
 
-            // point 지급 성공
+            // point 지급 성공 -> Service 로 분리 필요
             if (member1.get().getCurrent_point() >= give_point && member2.isPresent()) {
 
                 member1.get().minus_point(give_point);
@@ -91,6 +95,30 @@ public class MemberServiceController {
 
         return "redirect:/login/login";
     }
+
+
+
+
+    // 회원 탈퇴 기능
+    @Transactional
+    @PostMapping("/member/resign")
+    public String resign(@RequestParam("id") Long id,Model model){
+
+        Member member = memberRepository.findByid(id);
+
+        LocalDateTime register_date = LocalDateTime.now();
+
+        Resign resign = new Resign(member.getMemberId(), register_date);
+
+        resignRepository.save(resign);
+
+        memberRepository.delete(member);
+
+        model.addAttribute("resign_success","회원 탈퇴하셨습니다.");
+
+        return "member/resign_success";
+    }
+
 }
 
 

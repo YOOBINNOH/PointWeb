@@ -29,8 +29,6 @@ public class Member{
 
     private LocalDateTime register_date;
 
-    private LocalDateTime resign_date;
-
     private Long teamId;
 
 //    @ManyToOne(fetch = FetchType.LAZY)
@@ -57,7 +55,7 @@ public class Member{
         this.give_point = 0L;
         this.receive_point = 0L;
         this.login_date = register_date;
-        this.resign_date = null;
+
 
 
     }

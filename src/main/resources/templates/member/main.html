@@ -83,7 +83,7 @@
         <div class="mb-4"></div>
         <input type="hidden" th:name="Id" th:value="${member.getMemberId()}"/>
         <button class="btn btn-primary btn-lg btn-block" type="submit">포인트 선물하기</button>
-        <h1>[[${member.getMemberId()}]]</h1>
+
       </form>
     </div>
   </div>
@@ -91,8 +91,9 @@
 </div>
 
 <br>
-<form method="post" action="resign">
-  <button type="button" onclick="location.href='member'">회원 탈퇴하기</button>
+<form method="post" action="/member/resign">
+  <input type="hidden" th:name="id" th:value="${member.getId()}"/>
+  <button type="submit">회원 탈퇴하기</button>
 </form>
 
 
