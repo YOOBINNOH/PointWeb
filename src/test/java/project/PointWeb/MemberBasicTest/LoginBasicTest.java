@@ -1,4 +1,4 @@
-package project.PointWeb.MemberService;
+package project.PointWeb.MemberBasicTest;
 
 import jakarta.transaction.Transactional;
 import org.assertj.core.api.Assertions;
@@ -11,6 +11,7 @@ import project.PointWeb.Dto.MemberLoginDto;
 import project.PointWeb.Dto.MemberRegisterDto;
 import project.PointWeb.Repository.MemberRepository;
 import project.PointWeb.Controller.MemberController.MemberBasicController;
+import project.PointWeb.Service.MemberBasicService;
 
 import java.util.Optional;
 
@@ -22,7 +23,8 @@ public class LoginBasicTest {
     @Autowired
     MemberBasicController memberController;
     @Autowired MemberRepository memberRepository;
-    @Autowired MemberService memberService;
+    @Autowired
+    MemberBasicService memberBasicService;
 
 
     @Test
@@ -34,7 +36,7 @@ public class LoginBasicTest {
         memberRegisterDto.setTeamId(1L);
 
         Member member = new Member(memberRegisterDto.getMemberId(), memberRegisterDto.getMemberPw(), memberRegisterDto.getTeamId(), null);
-        memberService.save(member);
+        memberBasicService.save(member);
 
         MemberLoginDto memberLoginDto = new MemberLoginDto();
 
@@ -67,7 +69,7 @@ public class LoginBasicTest {
         memberRegisterDto.setTeamId(1L);
 
         Member member = new Member(memberRegisterDto.getMemberId(), memberRegisterDto.getMemberPw(), memberRegisterDto.getTeamId(), null);
-        memberService.save(member);
+        memberBasicService.save(member);
 
         MemberLoginDto memberLoginDto = new MemberLoginDto();
 

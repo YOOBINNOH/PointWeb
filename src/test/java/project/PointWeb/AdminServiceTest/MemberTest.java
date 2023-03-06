@@ -1,4 +1,4 @@
-package project.PointWeb.AdminService;
+package project.PointWeb.AdminServiceTest;
 
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
@@ -8,7 +8,7 @@ import org.springframework.test.annotation.Rollback;
 import project.PointWeb.Domain.Member;
 import project.PointWeb.Dto.MemberRegisterDto;
 import project.PointWeb.Repository.MemberRepository;
-import project.PointWeb.MemberService.MemberService;
+import project.PointWeb.Service.MemberBasicService;
 
 import java.util.Optional;
 
@@ -21,7 +21,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class MemberTest {
 
     @Autowired MemberRepository memberRepository;
-    @Autowired MemberService memberService;
+    @Autowired
+    MemberBasicService memberBasicService;
 
     @Test
     void 멤버_삭제_테스트() {
@@ -32,7 +33,7 @@ class MemberTest {
         memberRegisterDto.setTeamId(1L);
 
         Member member = new Member(memberRegisterDto.getMemberId(), memberRegisterDto.getMemberPw(), memberRegisterDto.getTeamId(), null);
-        memberService.save(member);
+        memberBasicService.save(member);
 
         Optional<Member> id = memberRepository.findBymemberId("test");
 
@@ -59,7 +60,7 @@ class MemberTest {
         memberRegisterDto.setTeamId(1L);
 
         Member member = new Member(memberRegisterDto.getMemberId(), memberRegisterDto.getMemberPw(), memberRegisterDto.getTeamId(), null);
-        memberService.save(member);
+        memberBasicService.save(member);
 
         Optional<Member> id = memberRepository.findBymemberId("test");
 

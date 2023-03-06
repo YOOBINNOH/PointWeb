@@ -14,7 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import project.PointWeb.Repository.MemberRepository;
-import project.PointWeb.MemberService.MemberService;
+import project.PointWeb.Service.MemberBasicService;
 
 
 import java.time.LocalDateTime;
@@ -25,7 +25,7 @@ import java.util.Optional;
 @Slf4j
 public class MemberBasicController {
 
-    final MemberService memberService;
+    final MemberBasicService memberBasicService;
     final MemberRepository memberRepository;
 
     @GetMapping("/login")
@@ -57,7 +57,7 @@ public class MemberBasicController {
 
         // 로그인 성공 시
 
-        else if(memberService.login_check(loginId,loginPw,login_date) == true){
+        else if(memberBasicService.login_check(loginId,loginPw,login_date) == true){
 
             Optional<Member> member = memberRepository.findBymemberId(loginId);
 
@@ -102,11 +102,11 @@ public class MemberBasicController {
             return "register/register";
         }
 
-        if(memberService.duplicate_check(memberRegisterDto.getMemberId()) == false){
+        if(memberBasicService.duplicate_check(memberRegisterDto.getMemberId()) == false){
             model.addAttribute("duplicate_fail","이미 사용 중인 아이디 입니다.");
             return "register/register_duplicate";
         }
-        else if(memberService.isname_test_check(check_id) == false){
+        else if(memberBasicService.isname_test_check(check_id) == false){
             model.addAttribute("Isname_test_fail","아이디 이름으로 test 는 사용할 수 없습니다.");
             return "register/register_Isname_test";
         }
@@ -119,7 +119,7 @@ public class MemberBasicController {
             // 새로운 객체를 만들고 save
 
             Member member = new Member(memberRegisterDto.getMemberId(), memberRegisterDto.getMemberPw(), memberRegisterDto.getTeamId(), register_date);
-            memberService.save(member);
+            memberBasicService.save(member);
 
             model.addAttribute("register_success","회원가입이 성공했습니다. 다시 로그인 해주세요.");
 

@@ -1,4 +1,4 @@
-package project.PointWeb.MemberService;
+package project.PointWeb.MemberBasicTest;
 
 import jakarta.transaction.Transactional;
 import org.assertj.core.api.Assertions;
@@ -10,6 +10,7 @@ import project.PointWeb.Domain.Member;
 import project.PointWeb.Dto.MemberRegisterDto;
 import project.PointWeb.Repository.MemberRepository;
 import project.PointWeb.Controller.MemberController.MemberBasicController;
+import project.PointWeb.Service.MemberBasicService;
 
 import java.util.Optional;
 
@@ -21,7 +22,8 @@ class RegisterBasicTest {
     @Autowired
     MemberBasicController memberController;
     @Autowired MemberRepository memberRepository;
-    @Autowired MemberService memberService;
+    @Autowired
+    MemberBasicService memberBasicService;
 
     @Test
     void 회원가입_저장_테스트() {
@@ -35,7 +37,7 @@ class RegisterBasicTest {
 
         // when
         Member member = new Member(memberRegisterDto.getMemberId(), memberRegisterDto.getMemberPw(),memberRegisterDto.getTeamId(),null);
-        memberService.save(member);
+        memberBasicService.save(member);
         //then
 
         Optional<Member> result = memberRepository.findBymemberId("test");
@@ -58,7 +60,7 @@ class RegisterBasicTest {
 
         // when
         Member member = new Member(memberRegisterDto.getMemberId(), memberRegisterDto.getMemberPw(),memberRegisterDto.getTeamId(),null);
-        memberService.save(member);
+        memberBasicService.save(member);
         //then
         Optional<Member> result = memberRepository.findBymemberId("test");
 
@@ -88,7 +90,7 @@ class RegisterBasicTest {
 
         // when
         Member member = new Member(memberRegisterDto.getMemberId(), memberRegisterDto.getMemberPw(),memberRegisterDto.getTeamId(),null);
-        memberService.save(member);
+        memberBasicService.save(member);
         //then
         Optional<Member> result = memberRepository.findBymemberId("test");
 
@@ -119,7 +121,7 @@ class RegisterBasicTest {
 
         // when
         Member member = new Member(memberRegisterDto.getMemberId(), memberRegisterDto.getMemberPw(),memberRegisterDto.getTeamId(),null);
-        memberService.save(member);
+        memberBasicService.save(member);
         //then
         Optional<Member> result = memberRepository.findBymemberId("test");
 

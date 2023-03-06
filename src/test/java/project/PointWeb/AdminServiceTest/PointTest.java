@@ -1,4 +1,4 @@
-package project.PointWeb.AdminService;
+package project.PointWeb.AdminServiceTest;
 
 
 import jakarta.transaction.Transactional;
@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import project.PointWeb.Domain.Member;
 import project.PointWeb.Dto.MemberRegisterDto;
-import project.PointWeb.MemberService.MemberService;
+import project.PointWeb.Service.MemberBasicService;
 import project.PointWeb.Repository.MemberRepository;
 
 import java.util.Optional;
@@ -22,7 +22,8 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class PointTest {
 
     @Autowired MemberRepository memberRepository;
-    @Autowired MemberService memberService;
+    @Autowired
+    MemberBasicService memberBasicService;
 
     @Test
     void 포인트_지급_테스트() {
@@ -33,7 +34,7 @@ public class PointTest {
         memberRegisterDto.setTeamId(1L);
 
         Member member = new Member(memberRegisterDto.getMemberId(), memberRegisterDto.getMemberPw(), memberRegisterDto.getTeamId(), null);
-        memberService.save(member);
+        memberBasicService.save(member);
 
         Optional<Member> id = memberRepository.findBymemberId("test");
 
@@ -59,7 +60,7 @@ public class PointTest {
         memberRegisterDto.setTeamId(1L);
 
         Member member = new Member(memberRegisterDto.getMemberId(), memberRegisterDto.getMemberPw(), memberRegisterDto.getTeamId(), null);
-        memberService.save(member);
+        memberBasicService.save(member);
 
         Optional<Member> id = memberRepository.findBymemberId("test");
 
@@ -85,7 +86,7 @@ public class PointTest {
         memberRegisterDto.setTeamId(1L);
 
         Member member = new Member(memberRegisterDto.getMemberId(), memberRegisterDto.getMemberPw(), memberRegisterDto.getTeamId(), null);
-        memberService.save(member);
+        memberBasicService.save(member);
 
         Optional<Member> id = memberRepository.findBymemberId("test");
 

@@ -1,4 +1,4 @@
-package project.PointWeb.MemberService;
+package project.PointWeb.MemberBasicTest;
 
 
 import jakarta.transaction.Transactional;
@@ -11,6 +11,7 @@ import project.PointWeb.Domain.Member;
 import project.PointWeb.Dto.MemberRegisterDto;
 import project.PointWeb.Repository.MemberRepository;
 import project.PointWeb.Controller.MemberController.MemberBasicController;
+import project.PointWeb.Service.MemberBasicService;
 
 
 @SpringBootTest
@@ -21,7 +22,8 @@ public class RegisterDuplicateTest {
     @Autowired
     MemberBasicController memberController;
     @Autowired MemberRepository memberRepository;
-    @Autowired MemberService memberService;
+    @Autowired
+    MemberBasicService memberBasicService;
 
     @Test
     void duplicate_check() {
@@ -32,9 +34,9 @@ public class RegisterDuplicateTest {
         memberRegisterDto.setTeamId(1L);
 
         Member member = new Member(memberRegisterDto.getMemberId(), memberRegisterDto.getMemberPw(), memberRegisterDto.getTeamId(), null);
-        memberService.save(member);
+        memberBasicService.save(member);
 
-        Assertions.assertThat(memberService.duplicate_check("test")).isEqualTo(false);
+        Assertions.assertThat(memberBasicService.duplicate_check("test")).isEqualTo(false);
 
     }
 }

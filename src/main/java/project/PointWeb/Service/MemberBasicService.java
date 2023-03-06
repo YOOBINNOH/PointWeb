@@ -1,4 +1,4 @@
-package project.PointWeb.MemberService;
+package project.PointWeb.Service;
 
 
 import jakarta.transaction.Transactional;
@@ -14,7 +14,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class MemberService {
+public class MemberBasicService {
 
     final MemberRepository memberRepository;
 
