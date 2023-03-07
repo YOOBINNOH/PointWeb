@@ -11,8 +11,8 @@ import java.time.LocalDateTime;
 @Setter
 public class MemberRegisterDto {
 
-    @Size(min=4,max=4,message = "4글자의 알파벳만 가능합니다.")
     @NotBlank(message = "아이디를 입력해주세요.")
+    @Pattern(regexp ="^[a-z]{4}$",message = "4글자의 알파벳만 가능합니다.")
     private String memberId;
 
     @Min(value = 1000,message = "4자리의 숫자만 가능합니다.")

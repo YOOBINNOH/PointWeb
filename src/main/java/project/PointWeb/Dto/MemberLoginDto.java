@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Setter
 public class MemberLoginDto {
 
-    @Size(min=4,max=4,message = "4글자의 알파벳만 가능합니다.")
+    @Pattern(regexp ="^[a-z]{4}$",message = "4글자의 알파벳만 가능합니다.")
     @NotBlank(message = "아이디를 입력해주세요.")
     private String memberId;
 
