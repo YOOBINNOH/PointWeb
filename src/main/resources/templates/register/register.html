@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -36,6 +36,12 @@
             -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
             box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
         }
+        .validationError{
+
+            color: rgb(255,0,0);
+        ㅎ}
+
+        }
     </style>
 </head>
 
@@ -44,7 +50,7 @@
     <div class="input-form-backgroud row">
         <div class="input-form col-md-12 mx-auto">
             <h4 class="mb-3">회원가입</h4>
-            <form class="validation-form" action="" method="POST" >
+            <form class="validation-form" action="" method="POST" th:object="${MemberRegisterDto}" >
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="memberId">아이디(4자리 알파벳)</label>
@@ -52,6 +58,7 @@
                         <div class="invalid-feedback">
                             아이디를 입력해주세요.(4자리 알파벳)
                         </div>
+                        <span class="validationError"  th:errors="*{memberId}">아이디 형식을 지켜주세요.</span>
                     </div>
 
                     <div class="col-md-6 mb-3">
@@ -60,6 +67,7 @@
                         <div class="invalid-feedback">
                             비밀번호를 입력해주세요.(4자리 숫자)
                         </div>
+                        <span class="validationError"  th:errors="*{memberPw}">비밀번호 형식을 지켜주세요.</span>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="teamId">그룹 선택(1~10)</label>
@@ -67,6 +75,7 @@
                         <div class="invalid-feedback">
                             그룹을 골라주세요. (1-10)
                         </div>
+                        <span class="validationError"  th:errors="*{memberId}">팀 번호를 지켜주세요.</span>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="memberPw">비밀번호 확인</label>
@@ -74,6 +83,7 @@
                         <div class="invalid-feedback">
                             비밀번호를 입력해주세요.(4자리 숫자)
                         </div>
+                        <span class="validationError"  th:errors="*{memberPw}">비밀번호 형식을 지켜주세요.</span>
                     </div>
 
 

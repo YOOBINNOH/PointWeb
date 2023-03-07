@@ -29,20 +29,26 @@ public class MemberBasicController {
     final MemberRepository memberRepository;
 
     @GetMapping("/login")
-    public String login(){
+    public String login(Model model){
+        model.addAttribute("MemberLoginDto",new MemberLoginDto());
         return "login/login";
     }
 
     // 로그인
 
     @PostMapping("/login")
-    public String login_check(@Validated @ModelAttribute MemberLoginDto memberLoginDto, BindingResult bindingResult, Model model){
+    public String login_check(@ModelAttribute("MemberLoginDto") @Validated MemberLoginDto memberLoginDto, BindingResult bindingResult, Model model){
 
         LocalDateTime login_date = LocalDateTime.now();
 
 
         String loginId = memberLoginDto.getMemberId();
         Long loginPw = memberLoginDto.getMemberPw();
+
+
+
+
+
 
         if(bindingResult.hasErrors()){
             return "login/login";
@@ -86,13 +92,14 @@ public class MemberBasicController {
     }
 
     @GetMapping("/register")
-    public String register(){
+    public String register(Model model){
+        model.addAttribute("MemberRegisterDto",new MemberRegisterDto());
         return "register/register";
     }
 
 
     @PostMapping("/register")
-    public String register_check(@Validated @ModelAttribute MemberRegisterDto memberRegisterDto,BindingResult bindingResult, Model model){
+    public String register_check(@Validated @ModelAttribute("MemberRegisterDto") MemberRegisterDto memberRegisterDto,BindingResult bindingResult, Model model){
 
         //Id 중복 체크 기능
 
