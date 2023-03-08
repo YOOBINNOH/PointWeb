@@ -1,11 +1,14 @@
 package project.PointWeb.Controller.MemberController;
 
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import project.PointWeb.Domain.Member;
 import project.PointWeb.Dto.MemberLoginDto;
 import project.PointWeb.Dto.MemberRegisterDto;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import project.PointWeb.Repository.MemberRepository;
 import project.PointWeb.Service.MemberBasicService;
+import project.PointWeb.Session.SessionConst;
 
 
 import java.time.LocalDateTime;
@@ -28,6 +32,23 @@ public class MemberBasicController {
     final MemberBasicService memberBasicService;
     final MemberRepository memberRepository;
 
+    @GetMapping("/")
+    public String home(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember){
+
+        //세션에 회원 데이터가 없으면 index
+        if (loginMember == null) {
+            return "index";
+        }
+
+        // 있으면 회원 페이지로 return
+
+        Long id = loginMember.getId();
+
+        return "redirect:/member/"+id;
+
+    }
+
+
     @GetMapping("/login")
     public String login(Model model){
         model.addAttribute("MemberLoginDto",new MemberLoginDto());
@@ -37,7 +58,7 @@ public class MemberBasicController {
     // 로그인
 
     @PostMapping("/login")
-    public String login_check(@ModelAttribute("MemberLoginDto") @Validated MemberLoginDto memberLoginDto, BindingResult bindingResult, Model model){
+    public String login_check(@ModelAttribute("MemberLoginDto") @Validated MemberLoginDto memberLoginDto, BindingResult bindingResult, Model model, HttpServletRequest request){
 
         LocalDateTime login_date = LocalDateTime.now();
 
@@ -70,6 +91,10 @@ public class MemberBasicController {
             if(member.isPresent()){
                 Long id = member.get().getId();
 
+                // 세션 기능
+                HttpSession session = request.getSession();
+                session.setAttribute(SessionConst.LOGIN_MEMBER, member);
+
                 return "redirect:/member/"+id;
 
             }
@@ -89,6 +114,16 @@ public class MemberBasicController {
 
 
 
+    }
+
+    @PostMapping("/logout")
+    public String logoutV3(HttpServletRequest request) {
+        //세션을 삭제한다.
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+        return "redirect:/index";
     }
 
     @GetMapping("/register")

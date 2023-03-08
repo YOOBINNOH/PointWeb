@@ -15,7 +15,6 @@ import project.PointWeb.Domain.Resign;
 import project.PointWeb.Repository.MemberRepository;
 import project.PointWeb.Repository.ResignRepository;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
