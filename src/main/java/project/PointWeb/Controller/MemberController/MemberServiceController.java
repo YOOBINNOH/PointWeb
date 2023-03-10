@@ -22,7 +22,8 @@ import java.util.Optional;
 @Slf4j
 public class MemberServiceController {
 
-    @Autowired MemberRepository memberRepository;
+    @Autowired
+    MemberRepository memberRepository;
     @Autowired ResignRepository resignRepository;
 
     // 로그인 성공한 회원, 회원 페이지로 이동

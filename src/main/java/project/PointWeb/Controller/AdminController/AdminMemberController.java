@@ -15,7 +15,8 @@ import java.util.Optional;
 
 public class AdminMemberController {
 
-    @Autowired MemberRepository memberRepository;
+    @Autowired
+    MemberRepository memberRepository;
 
     // 회원 삭제
 

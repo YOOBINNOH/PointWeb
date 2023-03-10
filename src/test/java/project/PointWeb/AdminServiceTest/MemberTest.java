@@ -20,7 +20,8 @@ import static org.junit.jupiter.api.Assertions.*;
 @Rollback
 class MemberTest {
 
-    @Autowired MemberRepository memberRepository;
+    @Autowired
+    MemberRepository memberRepository;
     @Autowired
     MemberBasicService memberBasicService;
 

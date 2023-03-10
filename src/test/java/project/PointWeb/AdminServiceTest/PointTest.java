@@ -21,7 +21,8 @@ import static org.junit.jupiter.api.Assertions.fail;
 @Rollback
 public class PointTest {
 
-    @Autowired MemberRepository memberRepository;
+    @Autowired
+    MemberRepository memberRepository;
     @Autowired
     MemberBasicService memberBasicService;
 

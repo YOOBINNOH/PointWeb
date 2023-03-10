@@ -12,25 +12,26 @@ import project.PointWeb.Repository.ResignRepository;
 
 public class AdminBasicController {
 
-    @Autowired MemberRepository memberRepository;
+    @Autowired
+    MemberRepository memberRepository;
     @Autowired ResignRepository resignRepository;
 
 
     @GetMapping("/admin/main")
     public String main(Model model){
-        model.addAttribute("members",memberRepository.findAll());
+        model.addAttribute("members", memberRepository.findAll());
         return "/admin/main";
     }
 
     @GetMapping("/admin/member")
     public String member(Model model){
-        model.addAttribute("members",memberRepository.findAll());
+        model.addAttribute("members", memberRepository.findAll());
         return "/admin/member";
     }
 
     @GetMapping("/admin/point")
     public String point(Model model){
-        model.addAttribute("members",memberRepository.findAll());
+        model.addAttribute("members", memberRepository.findAll());
         return "/admin/point";
     }
 

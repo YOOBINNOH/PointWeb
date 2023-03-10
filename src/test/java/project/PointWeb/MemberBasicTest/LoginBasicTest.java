@@ -22,7 +22,8 @@ public class LoginBasicTest {
 
     @Autowired
     MemberBasicController memberController;
-    @Autowired MemberRepository memberRepository;
+    @Autowired
+    MemberRepository memberRepository;
     @Autowired
     MemberBasicService memberBasicService;
 

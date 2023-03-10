@@ -21,7 +21,8 @@ public class RegisterNameTest {
 
     @Autowired
     MemberBasicController memberController;
-    @Autowired MemberRepository memberRepository;
+    @Autowired
+    MemberRepository memberRepository;
     @Autowired
     MemberBasicService memberBasicService;
 

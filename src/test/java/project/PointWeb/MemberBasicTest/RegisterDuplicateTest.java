@@ -21,7 +21,8 @@ public class RegisterDuplicateTest {
 
     @Autowired
     MemberBasicController memberController;
-    @Autowired MemberRepository memberRepository;
+    @Autowired
+    MemberRepository memberRepository;
     @Autowired
     MemberBasicService memberBasicService;
 

@@ -42,6 +42,7 @@ public class MemberBasicController {
 
         // 있으면 회원 페이지로 return
 
+
         Long id = loginMember.getId();
 
         return "redirect:/member/"+id;
@@ -50,9 +51,16 @@ public class MemberBasicController {
 
 
     @GetMapping("/login")
-    public String login(Model model){
-        model.addAttribute("MemberLoginDto",new MemberLoginDto());
-        return "login/login";
+    public String login(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember,Model model){
+
+        if (loginMember == null) {
+            model.addAttribute("MemberLoginDto",new MemberLoginDto());
+            return "login/login";
+        }
+
+        Long id = loginMember.getId();
+
+        return "redirect:/member/"+id;
     }
 
     // 로그인
@@ -93,7 +101,7 @@ public class MemberBasicController {
 
                 // 세션 기능
                 HttpSession session = request.getSession();
-                session.setAttribute(SessionConst.LOGIN_MEMBER, member);
+                session.setAttribute(SessionConst.LOGIN_MEMBER, member.get());
 
                 return "redirect:/member/"+id;
 
@@ -127,10 +135,20 @@ public class MemberBasicController {
     }
 
     @GetMapping("/register")
-    public String register(Model model){
-        model.addAttribute("MemberRegisterDto",new MemberRegisterDto());
-        return "register/register";
+    public String register(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember,Model model){
+
+
+        if (loginMember == null) {
+            model.addAttribute("MemberRegisterDto",new MemberRegisterDto());
+            return "register/register";
+        }
+
+        Long id = loginMember.getId();
+
+        return "redirect:/member/"+id;
     }
+
+
 
 
     @PostMapping("/register")
