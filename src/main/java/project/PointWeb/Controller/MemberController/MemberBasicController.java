@@ -41,8 +41,6 @@ public class MemberBasicController {
         }
 
         // 있으면 회원 페이지로 return
-
-
         Long id = loginMember.getId();
 
         return "redirect:/member/"+id;
@@ -70,14 +68,8 @@ public class MemberBasicController {
 
         LocalDateTime login_date = LocalDateTime.now();
 
-
         String loginId = memberLoginDto.getMemberId();
         Long loginPw = memberLoginDto.getMemberPw();
-
-
-
-
-
 
         if(bindingResult.hasErrors()){
             return "login/login";
@@ -104,7 +96,6 @@ public class MemberBasicController {
                 session.setAttribute(SessionConst.LOGIN_MEMBER, member.get());
 
                 return "redirect:/member/"+id;
-
             }
 
             else{
@@ -119,9 +110,6 @@ public class MemberBasicController {
             model.addAttribute("login_fail","회원 정보가 일치하지 않습니다.");
             return "login/login_fail";
         }
-
-
-
     }
 
     @PostMapping("/logout")
@@ -131,8 +119,9 @@ public class MemberBasicController {
         if (session != null) {
             session.invalidate();
         }
-        return "redirect:/index";
+        return "redirect:/";
     }
+
 
     @GetMapping("/register")
     public String register(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember,Model model){
