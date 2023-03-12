@@ -43,6 +43,7 @@ public class MemberBasicController {
         // 있으면 회원 페이지로 return
         Long id = loginMember.getId();
 
+
         return "redirect:/member/"+id;
 
     }
@@ -78,6 +79,9 @@ public class MemberBasicController {
         // 관리자 로그인 시 관리자 페이지로 이동
         if(loginId.equals("host") && loginPw.equals(1234L)){
 
+            Optional<Member> member = memberRepository.findBymemberId(loginId);
+            HttpSession session = request.getSession();
+            session.setAttribute(SessionConst.HOST, member.get());
             return "redirect:/admin/main";
         }
 
