@@ -86,7 +86,7 @@ public class AdminBasicController {
 
         if(host!=null){
 
-            model.addAttribute("members", memberRepository.findAll());
+            model.addAttribute("members", resignRepository.findAll());
             return "/admin/resign";
 
         }
