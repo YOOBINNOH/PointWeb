@@ -1,6 +1,8 @@
 package project.PointWeb.Controller.MemberController;
 
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -102,13 +104,18 @@ public class MemberServiceController {
     // 회원 탈퇴 기능
     @Transactional
     @PostMapping("/member/resign")
-    public String resign(@RequestParam("id") Long id,Model model){
+    public String resign(@RequestParam("id") Long id, Model model, HttpServletRequest request){
 
         Member member = memberRepository.findByid(id);
 
         LocalDateTime register_date = LocalDateTime.now();
 
         Resign resign = new Resign(member.getMemberId(), register_date);
+
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
 
         resignRepository.save(resign);
 
